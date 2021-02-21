@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  labels:
+    name: redis
+    app: voteapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: voteapp
+      name: redis
+  template:
+    metadata:
+      name: redis
+      labels:
+        app: voteapp
+        name: redis
+    spec:
+      containers:
+        - name: redis
+          image: redis
+          ports:
+            - containerPort: 6379
